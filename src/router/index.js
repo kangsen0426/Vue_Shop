@@ -2,6 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
+import WelCome from '../components/WelCome.vue'
+import Users from '../components/user/User.vue'
+import Roles from '../components/roles/Roles.vue'
+import Rights from '../components/rights/Rights.vue'
+import Goods from '../components/goods/Goods.vue'
+import Params from '../components/params/Params.vue'
+import Categories from '../components/categories/Categories.vue'
+import Orders from '../components/orders/Orders.vue'
+import Reports from '../components/reports/Reports.vue'
+
 
 Vue.use(VueRouter)
 
@@ -16,8 +26,48 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
-  }
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: WelCome
+      },
+      {
+        path: '/users',
+        component: Users
+      },
+      {
+        path: '/roles',
+        component: Roles
+      },
+      {
+        path: '/rights',
+        component: Rights
+      },
+      {
+        path: '/goods',
+        component: Goods
+      },
+      {
+        path: '/params',
+        component: Params
+      },
+      {
+        path: '/categories',
+        component: Categories
+      },
+      {
+        path: '/orders',
+        component: Orders
+      },
+      {
+        path: '/reports',
+        component: Reports
+      },
+    ]
+  },
+
 
 
 ]
@@ -33,11 +83,11 @@ router.beforeEach((to, from, next) => {
   //next 是一个函数，表示放行
   // next（）放行  next('/login) 强制跳转到登入页面
 
-  if(to.path == '/login') return next()
+  if (to.path == '/login') return next()
 
   //获取token
   const tokenStr = window.sessionStorage.getItem('token')
-  if(!tokenStr) return next('/login')
+  if (!tokenStr) return next('/login')
 
   next()
 
