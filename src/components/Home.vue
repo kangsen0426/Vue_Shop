@@ -146,4 +146,9 @@ export default {
   cursor: pointer;
   background-color: #4A5064;
 }
+.el-container{
+  overflow: hidden;
+}
+
+
 </style>
