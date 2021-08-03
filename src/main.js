@@ -10,6 +10,11 @@ import './assets/fonts/iconfont.css'
 
 import axios from 'axios'
 
+//树形插件
+import TreeTable from 'vue-table-with-tree-grid'
+
+Vue.component('tree-table', TreeTable)
+
 
 Vue.prototype.$http = axios
 //配置请求的根路径
