@@ -45,7 +45,7 @@
         ></el-table-column>
         <el-table-column width="150px" label="创建时间" prop="add_time">
           <template slot-scope="scope">
-            {{ getrealyDate(scope.row.add_time) }}
+            {{ getrealyDate(scope.row.add_time*1000) }}
           </template>
         </el-table-column>
         <el-table-column width="130px" label="操作">
