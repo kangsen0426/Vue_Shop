@@ -22,6 +22,10 @@ import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 
+//进度条
+import NProgress from 'nprogress'
+import  'nprogress/nprogress.css'
+
 Vue.use(VueQuillEditor, /* { default global options } */)
 
 
@@ -29,10 +33,18 @@ Vue.prototype.$http = axios
 //配置请求的根路径
 axios.defaults.baseURL =  'http://127.0.0.1:8888/api/private/v1/'
 // 配置拦截器
+//在request拦截器中展示京都条
 axios.interceptors.request.use(config =>{
+  NProgress.start()
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+// 在 response 拦截器中隐藏进度条
+axios.interceptors.response.use(config =>{
+  NProgress.done()
+  return config
+})
+
 Vue.config.productionTip = false
 
 new Vue({
